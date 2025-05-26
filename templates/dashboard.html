@@ -1,0 +1,114 @@
+{% extends "layout.html" %}
+
+{% block title %}仪表板 - 学生管理系统{% endblock %}
+
+{% block main_content %}
+<div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+    <h1 class="h2">仪表板</h1>
+</div>
+
+<!-- 统计卡片 -->
+<div class="row mb-4">
+    <div class="col-md-4">
+        <div class="card bg-primary text-white">
+            <div class="card-body">
+                <div class="d-flex justify-content-between">
+                    <div>
+                        <h4>{{ total_students }}</h4>
+                        <p class="mb-0">学生总数</p>
+                    </div>
+                    <div class="align-self-center">
+                        <i class="fas fa-users fa-2x"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="card bg-success text-white">
+            <div class="card-body">
+                <div class="d-flex justify-content-between">
+                    <div>
+                        <h4>{{ total_departments }}</h4>
+                        <p class="mb-0">院系数量</p>
+                    </div>
+                    <div class="align-self-center">
+                        <i class="fas fa-building fa-2x"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="card bg-info text-white">
+            <div class="card-body">
+                <div class="d-flex justify-content-between">
+                    <div>
+                        <h4>{{ total_classes }}</h4>
+                        <p class="mb-0">班级数量</p>
+                    </div>
+                    <div class="align-self-center">
+                        <i class="fas fa-chalkboard fa-2x"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- 快捷操作 -->
+<div class="row">
+    <div class="col-md-12">
+        <div class="card">
+            <div class="card-header">
+                <h5><i class="fas fa-bolt"></i> 快捷操作</h5>
+            </div>
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-md-3 mb-3">
+                        <a href="{{ url_for('add_student') }}" class="btn btn-primary btn-lg w-100">
+                            <i class="fas fa-user-plus"></i><br>
+                            添加学生
+                        </a>
+                    </div>
+                    <div class="col-md-3 mb-3">
+                        <a href="{{ url_for('students_list') }}" class="btn btn-success btn-lg w-100">
+                            <i class="fas fa-list"></i><br>
+                            学生列表
+                        </a>
+                    </div>
+                    <div class="col-md-3 mb-3">
+                        <a href="{{ url_for('statistics') }}" class="btn btn-info btn-lg w-100">
+                            <i class="fas fa-chart-bar"></i><br>
+                            数据统计
+                        </a>
+                    </div>
+                    <div class="col-md-3 mb-3">
+                        <a href="#" class="btn btn-warning btn-lg w-100">
+                            <i class="fas fa-cog"></i><br>
+                            系统设置
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- 最近添加的学生 -->
+<div class="row mt-4">
+    <div class="col-md-12">
+        <div class="card">
+            <div class="card-header">
+                <h5><i class="fas fa-clock"></i> 系统概览</h5>
+            </div>
+            <div class="card-body">
+                <p class="text-muted">欢迎使用学生管理系统！您可以通过左侧菜单进行各种操作。</p>
+                <ul class="list-unstyled">
+                    <li><i class="fas fa-check text-success"></i> 学生信息管理</li>
+                    <li><i class="fas fa-check text-success"></i> 数据统计分析</li>
+                    <li><i class="fas fa-check text-success"></i> 可视化图表展示</li>
+                    <li><i class="fas fa-check text-success"></i> 响应式界面设计</li>
+                </ul>
+            </div>
+{% endblock %}

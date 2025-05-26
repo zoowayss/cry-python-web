@@ -1,0 +1,46 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container-fluid">
+    <div class="row">
+        <!-- 侧边栏 -->
+        <nav class="col-md-2 d-none d-md-block sidebar">
+            <div class="sidebar-sticky pt-3">
+                <h5 class="text-white text-center mb-4">学生管理系统</h5>
+                <ul class="nav flex-column">
+                    <li class="nav-item">
+                        <a class="nav-link {% if request.endpoint == 'dashboard' %}active{% endif %}" href="{{ url_for('dashboard') }}">
+                            <i class="fas fa-tachometer-alt"></i> 仪表板
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link {% if request.endpoint in ['students_list', 'add_student', 'edit_student'] %}active{% endif %}" href="{{ url_for('students_list') }}">
+                            <i class="fas fa-users"></i> 学生管理
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link {% if request.endpoint == 'statistics' %}active{% endif %}" href="{{ url_for('statistics') }}">
+                            <i class="fas fa-chart-bar"></i> 数据统计
+                        </a>
+                    </li>
+                    <li class="nav-item mt-3">
+                        <a class="nav-link text-danger" href="{{ url_for('logout') }}">
+                            <i class="fas fa-sign-out-alt"></i> 退出登录
+                        </a>
+                    </li>
+                </ul>
+                <div class="mt-4 text-center">
+                    <small class="text-muted">欢迎，{{ current_user.username }}</small>
+                </div>
+            </div>
+        </nav>
+
+        <!-- 主内容区域 -->
+        <main class="col-md-10 ml-sm-auto px-4">
+            <div class="pt-3">
+                {% block main_content %}{% endblock %}
+            </div>
+        </main>
+    </div>
+</div>
+{% endblock %}

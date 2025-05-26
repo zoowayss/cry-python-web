@@ -1,0 +1,138 @@
+{% extends "layout.html" %}
+
+{% block title %}编辑学生 - 学生管理系统{% endblock %}
+
+{% block main_content %}
+<div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+    <h1 class="h2">编辑学生信息</h1>
+    <div class="btn-toolbar mb-2 mb-md-0">
+        <a href="{{ url_for('students_list') }}" class="btn btn-secondary">
+            <i class="fas fa-arrow-left"></i> 返回列表
+        </a>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-8">
+        <div class="card">
+            <div class="card-header">
+                <h5><i class="fas fa-user-edit"></i> 学生信息</h5>
+            </div>
+            <div class="card-body">
+                <form method="POST">
+                    <div class="row">
+                        <div class="col-md-6 mb-3">
+                            <label for="student_id" class="form-label">学号 *</label>
+                            <input type="text" class="form-control" id="student_id" name="student_id"
+                                   value="{{ student.student_id }}" required>
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <label for="name" class="form-label">姓名 *</label>
+                            <input type="text" class="form-control" id="name" name="name"
+                                   value="{{ student.name }}" required>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-6 mb-3">
+                            <label for="gender" class="form-label">性别 *</label>
+                            <select class="form-select" id="gender" name="gender" required>
+                                <option value="">请选择性别</option>
+                                <option value="男" {% if student.gender == '男' %}selected{% endif %}>男</option>
+                                <option value="女" {% if student.gender == '女' %}selected{% endif %}>女</option>
+                            </select>
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <label for="age" class="form-label">年龄 *</label>
+                            <input type="number" class="form-control" id="age" name="age"
+                                   value="{{ student.age }}" min="16" max="30" required>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-6 mb-3">
+                            <label for="department_id" class="form-label">院系 *</label>
+                            <select class="form-select" id="department_id" name="department_id" required>
+                                <option value="">请选择院系</option>
+                                {% for dept in departments %}
+                                <option value="{{ dept.id }}"
+                                        {% if dept.id == student.department_id %}selected{% endif %}>
+                                    {{ dept.name }}
+                                </option>
+                                {% endfor %}
+                            </select>
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <label for="class_id" class="form-label">班级 *</label>
+                            <select class="form-select" id="class_id" name="class_id" required>
+                                <option value="">请选择班级</option>
+                                {% for cls in classes %}
+                                <option value="{{ cls.id }}"
+                                        {% if cls.id == student.class_id %}selected{% endif %}>
+                                    {{ cls.name }}
+                                </option>
+                                {% endfor %}
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-6 mb-3">
+                            <label for="phone" class="form-label">联系电话</label>
+                            <input type="tel" class="form-control" id="phone" name="phone"
+                                   value="{{ student.phone or '' }}">
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <label for="email" class="form-label">邮箱</label>
+                            <input type="email" class="form-control" id="email" name="email"
+                                   value="{{ student.email or '' }}">
+                        </div>
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="enrollment_date" class="form-label">入学日期 *</label>
+                        <input type="date" class="form-control" id="enrollment_date" name="enrollment_date"
+                               value="{{ student.enrollment_date.strftime('%Y-%m-%d') if student.enrollment_date else '' }}" required>
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="address" class="form-label">地址</label>
+                        <textarea class="form-control" id="address" name="address" rows="3">{{ student.address or '' }}</textarea>
+                    </div>
+
+                    <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                        <a href="{{ url_for('students_list') }}" class="btn btn-secondary me-md-2">取消</a>
+                        <button type="submit" class="btn btn-primary">
+                            <i class="fas fa-save"></i> 更新
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-4">
+        <div class="card">
+            <div class="card-header">
+                <h6><i class="fas fa-info-circle"></i> 编辑说明</h6>
+            </div>
+            <div class="card-body">
+                <ul class="list-unstyled">
+                    <li><i class="fas fa-check text-success"></i> 带 * 的字段为必填项</li>
+                    <li><i class="fas fa-check text-success"></i> 学号必须唯一</li>
+                    <li><i class="fas fa-check text-success"></i> 年龄范围：16-30岁</li>
+                    <li><i class="fas fa-check text-success"></i> 请确保信息准确无误</li>
+                </ul>
+
+                <hr>
+
+                <h6>学生信息</h6>
+                <p class="text-muted small">
+                    创建时间：{{ student.created_at.strftime('%Y-%m-%d %H:%M') if student.created_at else '-' }}<br>
+                    更新时间：{{ student.updated_at.strftime('%Y-%m-%d %H:%M') if student.updated_at else '-' }}
+                </p>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
