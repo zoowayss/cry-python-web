@@ -1,0 +1,82 @@
+{% extends "layout.html" %}
+
+{% block title %}添加爱好 - 学生管理系统{% endblock %}
+
+{% block main_content %}
+<div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+    <h1 class="h2">添加爱好</h1>
+    <div class="btn-toolbar mb-2 mb-md-0">
+        <a href="{{ url_for('hobbies_list') }}" class="btn btn-secondary">
+            <i class="fas fa-arrow-left"></i> 返回列表
+        </a>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-8">
+        <div class="card">
+            <div class="card-header">
+                <h5><i class="fas fa-heart"></i> 爱好信息</h5>
+            </div>
+            <div class="card-body">
+                <form method="POST">
+                    <div class="mb-3">
+                        <label for="name" class="form-label">爱好名称 *</label>
+                        <input type="text" class="form-control" id="name" name="name" required
+                               placeholder="请输入爱好名称，如：编程、篮球、音乐等">
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="description" class="form-label">描述</label>
+                        <textarea class="form-control" id="description" name="description" rows="4"
+                                  placeholder="请输入爱好的详细描述（可选）"></textarea>
+                    </div>
+
+                    <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                        <a href="{{ url_for('hobbies_list') }}" class="btn btn-secondary me-md-2">取消</a>
+                        <button type="submit" class="btn btn-primary">
+                            <i class="fas fa-save"></i> 保存
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-4">
+        <div class="card">
+            <div class="card-header">
+                <h6><i class="fas fa-info-circle"></i> 填写说明</h6>
+            </div>
+            <div class="card-body">
+                <ul class="list-unstyled">
+                    <li><i class="fas fa-check text-success"></i> 带 * 的字段为必填项</li>
+                    <li><i class="fas fa-check text-success"></i> 爱好名称应简洁明了</li>
+                    <li><i class="fas fa-check text-success"></i> 描述字段可以详细说明爱好内容</li>
+                    <li><i class="fas fa-check text-success"></i> 添加后可在学生管理中分配给学生</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="card mt-3">
+            <div class="card-header">
+                <h6><i class="fas fa-lightbulb"></i> 常见爱好示例</h6>
+            </div>
+            <div class="card-body">
+                <div class="d-flex flex-wrap gap-1">
+                    <span class="badge bg-secondary">编程</span>
+                    <span class="badge bg-secondary">篮球</span>
+                    <span class="badge bg-secondary">音乐</span>
+                    <span class="badge bg-secondary">阅读</span>
+                    <span class="badge bg-secondary">绘画</span>
+                    <span class="badge bg-secondary">游泳</span>
+                    <span class="badge bg-secondary">摄影</span>
+                    <span class="badge bg-secondary">旅行</span>
+                    <span class="badge bg-secondary">电影</span>
+                    <span class="badge bg-secondary">游戏</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

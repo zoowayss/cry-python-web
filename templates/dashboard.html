@@ -56,44 +56,6 @@
     </div>
 </div>
 
-<!-- 快捷操作 -->
-<div class="row">
-    <div class="col-md-12">
-        <div class="card">
-            <div class="card-header">
-                <h5><i class="fas fa-bolt"></i> 快捷操作</h5>
-            </div>
-            <div class="card-body">
-                <div class="row">
-                    <div class="col-md-3 mb-3">
-                        <a href="{{ url_for('add_student') }}" class="btn btn-primary btn-lg w-100">
-                            <i class="fas fa-user-plus"></i><br>
-                            添加学生
-                        </a>
-                    </div>
-                    <div class="col-md-3 mb-3">
-                        <a href="{{ url_for('students_list') }}" class="btn btn-success btn-lg w-100">
-                            <i class="fas fa-list"></i><br>
-                            学生列表
-                        </a>
-                    </div>
-                    <div class="col-md-3 mb-3">
-                        <a href="{{ url_for('statistics') }}" class="btn btn-info btn-lg w-100">
-                            <i class="fas fa-chart-bar"></i><br>
-                            数据统计
-                        </a>
-                    </div>
-                    <div class="col-md-3 mb-3">
-                        <a href="#" class="btn btn-warning btn-lg w-100">
-                            <i class="fas fa-cog"></i><br>
-                            系统设置
-                        </a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
 
 <!-- 最近添加的学生 -->
 <div class="row mt-4">
@@ -104,11 +66,25 @@
             </div>
             <div class="card-body">
                 <p class="text-muted">欢迎使用学生管理系统！您可以通过左侧菜单进行各种操作。</p>
-                <ul class="list-unstyled">
-                    <li><i class="fas fa-check text-success"></i> 学生信息管理</li>
-                    <li><i class="fas fa-check text-success"></i> 数据统计分析</li>
-                    <li><i class="fas fa-check text-success"></i> 可视化图表展示</li>
-                    <li><i class="fas fa-check text-success"></i> 响应式界面设计</li>
-                </ul>
+                <div class="row">
+                    <div class="col-md-6">
+                        <h6><i class="fas fa-star text-warning"></i> 核心功能</h6>
+                        <ul class="list-unstyled">
+                            <li><i class="fas fa-check text-success"></i> 学生信息管理</li>
+                            <li><i class="fas fa-check text-success"></i> 学生爱好管理</li>
+                            <li><i class="fas fa-check text-success"></i> 学生成绩管理</li>
+                            <li><i class="fas fa-check text-success"></i> 数据统计分析</li>
+                        </ul>
+                    </div>
+                    <div class="col-md-6">
+                        <h6><i class="fas fa-magic text-info"></i> 系统特色</h6>
+                        <ul class="list-unstyled">
+                            <li><i class="fas fa-check text-success"></i> 可视化图表展示</li>
+                            <li><i class="fas fa-check text-success"></i> 响应式界面设计</li>
+                            <li><i class="fas fa-check text-success"></i> 多维度数据筛选</li>
+                            <li><i class="fas fa-check text-success"></i> 用户友好操作界面</li>
+                        </ul>
+                    </div>
+                </div>
             </div>
 {% endblock %}

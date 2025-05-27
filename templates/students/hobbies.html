@@ -1,0 +1,111 @@
+{% extends "layout.html" %}
+
+{% block title %}{{ student.name }} - 爱好管理 - 学生管理系统{% endblock %}
+
+{% block main_content %}
+<div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+    <h1 class="h2">{{ student.name }} - 爱好管理</h1>
+    <div class="btn-toolbar mb-2 mb-md-0">
+        <a href="{{ url_for('students_list') }}" class="btn btn-secondary">
+            <i class="fas fa-arrow-left"></i> 返回学生列表
+        </a>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-8">
+        <div class="card">
+            <div class="card-header">
+                <h5><i class="fas fa-heart"></i> 选择爱好</h5>
+            </div>
+            <div class="card-body">
+                <form method="POST">
+                    <div class="mb-3">
+                        <label class="form-label">请选择学生的爱好（可多选）：</label>
+                        <div class="row">
+                            {% for hobby in all_hobbies %}
+                            <div class="col-md-6 mb-2">
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" 
+                                           name="hobby_ids" value="{{ hobby.id }}" 
+                                           id="hobby_{{ hobby.id }}"
+                                           {% if hobby.id in current_hobby_ids %}checked{% endif %}>
+                                    <label class="form-check-label" for="hobby_{{ hobby.id }}">
+                                        <span class="badge bg-info me-2">{{ hobby.name }}</span>
+                                        {% if hobby.description %}
+                                        <small class="text-muted">{{ hobby.description }}</small>
+                                        {% endif %}
+                                    </label>
+                                </div>
+                            </div>
+                            {% endfor %}
+                        </div>
+                    </div>
+
+                    {% if not all_hobbies %}
+                    <div class="alert alert-warning">
+                        <i class="fas fa-exclamation-triangle"></i>
+                        暂无可选择的爱好，请先在 <a href="{{ url_for('hobbies_list') }}">爱好管理</a> 中添加爱好。
+                    </div>
+                    {% endif %}
+
+                    <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                        <a href="{{ url_for('students_list') }}" class="btn btn-secondary me-md-2">取消</a>
+                        <button type="submit" class="btn btn-primary" {% if not all_hobbies %}disabled{% endif %}>
+                            <i class="fas fa-save"></i> 保存
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-4">
+        <div class="card">
+            <div class="card-header">
+                <h6><i class="fas fa-user"></i> 学生信息</h6>
+            </div>
+            <div class="card-body">
+                <p class="text-muted small">
+                    <strong>学号：</strong>{{ student.student_id }}<br>
+                    <strong>姓名：</strong>{{ student.name }}<br>
+                    <strong>性别：</strong>{{ student.gender }}<br>
+                    <strong>年龄：</strong>{{ student.age }}岁<br>
+                    <strong>联系电话：</strong>{{ student.phone or '未填写' }}
+                </p>
+            </div>
+        </div>
+
+        <div class="card mt-3">
+            <div class="card-header">
+                <h6><i class="fas fa-info-circle"></i> 操作说明</h6>
+            </div>
+            <div class="card-body">
+                <ul class="list-unstyled">
+                    <li><i class="fas fa-check text-success"></i> 可以为学生选择多个爱好</li>
+                    <li><i class="fas fa-check text-success"></i> 取消选择会移除该爱好</li>
+                    <li><i class="fas fa-check text-success"></i> 保存后立即生效</li>
+                    <li><i class="fas fa-check text-success"></i> 如需添加新爱好，请前往爱好管理</li>
+                </ul>
+            </div>
+        </div>
+
+        {% if current_hobby_ids %}
+        <div class="card mt-3">
+            <div class="card-header">
+                <h6><i class="fas fa-heart"></i> 当前爱好</h6>
+            </div>
+            <div class="card-body">
+                <div class="d-flex flex-wrap gap-1">
+                    {% for hobby in all_hobbies %}
+                        {% if hobby.id in current_hobby_ids %}
+                        <span class="badge bg-success">{{ hobby.name }}</span>
+                        {% endif %}
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+        {% endif %}
+    </div>
+</div>
+{% endblock %}

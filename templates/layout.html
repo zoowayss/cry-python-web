@@ -19,6 +19,16 @@
                         </a>
                     </li>
                     <li class="nav-item">
+                        <a class="nav-link {% if request.endpoint in ['hobbies_list', 'add_hobby', 'edit_hobby'] %}active{% endif %}" href="{{ url_for('hobbies_list') }}">
+                            <i class="fas fa-heart"></i> 爱好管理
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link {% if request.endpoint in ['grades_list', 'add_grade', 'edit_grade'] %}active{% endif %}" href="{{ url_for('grades_list') }}">
+                            <i class="fas fa-graduation-cap"></i> 成绩管理
+                        </a>
+                    </li>
+                    <li class="nav-item">
                         <a class="nav-link {% if request.endpoint == 'statistics' %}active{% endif %}" href="{{ url_for('statistics') }}">
                             <i class="fas fa-chart-bar"></i> 数据统计
                         </a>

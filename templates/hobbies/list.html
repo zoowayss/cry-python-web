@@ -1,0 +1,113 @@
+{% extends "layout.html" %}
+
+{% block title %}爱好列表 - 学生管理系统{% endblock %}
+
+{% block main_content %}
+<div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+    <h1 class="h2">爱好管理</h1>
+    <div class="btn-toolbar mb-2 mb-md-0">
+        <a href="{{ url_for('add_hobby') }}" class="btn btn-primary">
+            <i class="fas fa-plus"></i> 添加爱好
+        </a>
+    </div>
+</div>
+
+<div class="card">
+    <div class="card-body">
+        <div class="table-responsive">
+            <table class="table table-striped table-hover">
+                <thead class="table-dark">
+                    <tr>
+                        <th>ID</th>
+                        <th>爱好名称</th>
+                        <th>描述</th>
+                        <th>操作</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for hobby in hobbies.items %}
+                    <tr>
+                        <td>{{ hobby.id }}</td>
+                        <td>
+                            <span class="badge bg-info">{{ hobby.name }}</span>
+                        </td>
+                        <td>{{ hobby.description or '-' }}</td>
+                        <td>
+                            <div class="btn-group btn-group-sm" role="group">
+                                <a href="{{ url_for('edit_hobby', id=hobby.id) }}"
+                                   class="btn btn-outline-primary" title="编辑">
+                                    <i class="fas fa-edit"></i>
+                                </a>
+                                <a href="{{ url_for('delete_hobby', id=hobby.id) }}"
+                                   class="btn btn-outline-danger" title="删除"
+                                   onclick="return confirm('确定要删除这个爱好吗？')">
+                                    <i class="fas fa-trash"></i>
+                                </a>
+                            </div>
+                        </td>
+                    </tr>
+                    {% else %}
+                    <tr>
+                        <td colspan="4" class="text-center text-muted">暂无爱好数据</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+
+        <!-- 分页 -->
+        {% if hobbies.pages > 1 %}
+        <nav aria-label="爱好列表分页">
+            <ul class="pagination justify-content-center">
+                {% if hobbies.has_prev %}
+                    <li class="page-item">
+                        <a class="page-link" href="{{ url_for('hobbies_list', page=hobbies.prev_num) }}">上一页</a>
+                    </li>
+                {% endif %}
+
+                {% for page_num in hobbies.iter_pages() %}
+                    {% if page_num %}
+                        {% if page_num != hobbies.page %}
+                            <li class="page-item">
+                                <a class="page-link" href="{{ url_for('hobbies_list', page=page_num) }}">{{ page_num }}</a>
+                            </li>
+                        {% else %}
+                            <li class="page-item active">
+                                <span class="page-link">{{ page_num }}</span>
+                            </li>
+                        {% endif %}
+                    {% else %}
+                        <li class="page-item disabled">
+                            <span class="page-link">…</span>
+                        </li>
+                    {% endif %}
+                {% endfor %}
+
+                {% if hobbies.has_next %}
+                    <li class="page-item">
+                        <a class="page-link" href="{{ url_for('hobbies_list', page=hobbies.next_num) }}">下一页</a>
+                    </li>
+                {% endif %}
+            </ul>
+        </nav>
+        {% endif %}
+    </div>
+</div>
+
+<div class="row mt-4">
+    <div class="col-md-12">
+        <div class="card">
+            <div class="card-header">
+                <h6><i class="fas fa-info-circle"></i> 使用说明</h6>
+            </div>
+            <div class="card-body">
+                <ul class="list-unstyled">
+                    <li><i class="fas fa-check text-success"></i> 可以添加、编辑和删除学生爱好类型</li>
+                    <li><i class="fas fa-check text-success"></i> 删除爱好时会同时删除相关的学生爱好关联</li>
+                    <li><i class="fas fa-check text-success"></i> 在学生管理页面可以为学生分配爱好</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
