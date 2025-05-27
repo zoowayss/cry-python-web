@@ -417,10 +417,10 @@ def init_database():
 
             # 创建班级
             classes = [
-                Class(name='计科2021-1班', department_id=1, grade_year=2021),
-                Class(name='计科2021-2班', department_id=1, grade_year=2021),
-                Class(name='电信2021-1班', department_id=2, grade_year=2021),
-                Class(name='机械2021-1班', department_id=3, grade_year=2021)
+                Class(name='计科2022-1班', department_id=1, grade_year=2022),
+                Class(name='计科2022-2班', department_id=1, grade_year=2022),
+                Class(name='电信2022-1班', department_id=2, grade_year=2022),
+                Class(name='机械2022-1班', department_id=3, grade_year=2022)
             ]
             for cls in classes:
                 db.session.add(cls)
@@ -440,7 +440,7 @@ def init_database():
             # 创建测试学生数据
             students = [
                 Student(
-                    student_id='2021001',
+                    student_id='2022001',
                     name='迟茹月',
                     gender='女',
                     age=20,
@@ -449,10 +449,10 @@ def init_database():
                     address='北京市朝阳区',
                     department_id=1,
                     class_id=1,
-                    enrollment_date=date(2021, 9, 1)
+                    enrollment_date=date(2022, 9, 1)
                 ),
                 Student(
-                    student_id='2021002',
+                    student_id='2022002',
                     name='钢铁侠',
                     gender='男',
                     age=21,
@@ -461,10 +461,10 @@ def init_database():
                     address='纽约市曼哈顿',
                     department_id=1,
                     class_id=1,
-                    enrollment_date=date(2021, 9, 1)
+                    enrollment_date=date(2022, 9, 1)
                 ),
                 Student(
-                    student_id='2021003',
+                    student_id='2022003',
                     name='卡皮巴拉',
                     gender='男',
                     age=19,
@@ -473,7 +473,7 @@ def init_database():
                     address='南美洲',
                     department_id=2,
                     class_id=3,
-                    enrollment_date=date(2021, 9, 1)
+                    enrollment_date=date(2022, 9, 1)
                 )
             ]
             for student in students:
@@ -496,21 +496,21 @@ def init_database():
             # 创建测试成绩数据
             grades = [
                 # 迟茹月的成绩
-                Grade(student_id=1, subject='高等数学', score=92.5, semester='第一学期', academic_year='2023-2024'),
-                Grade(student_id=1, subject='英语', score=88.0, semester='第一学期', academic_year='2023-2024'),
-                Grade(student_id=1, subject='计算机基础', score=95.0, semester='第一学期', academic_year='2023-2024'),
-                Grade(student_id=1, subject='程序设计', score=90.0, semester='第二学期', academic_year='2023-2024'),
+                Grade(student_id=1, subject='高等数学', score=92.5, semester='第一学期', academic_year='2024-2025'),
+                Grade(student_id=1, subject='英语', score=88.0, semester='第一学期', academic_year='2024-2025'),
+                Grade(student_id=1, subject='计算机基础', score=95.0, semester='第一学期', academic_year='2024-2025'),
+                Grade(student_id=1, subject='程序设计', score=90.0, semester='第二学期', academic_year='2024-2025'),
 
                 # 钢铁侠的成绩
-                Grade(student_id=2, subject='高等数学', score=85.5, semester='第一学期', academic_year='2023-2024'),
-                Grade(student_id=2, subject='英语', score=78.0, semester='第一学期', academic_year='2023-2024'),
-                Grade(student_id=2, subject='计算机基础', score=92.0, semester='第一学期', academic_year='2023-2024'),
-                Grade(student_id=2, subject='程序设计', score=88.5, semester='第二学期', academic_year='2023-2024'),
+                Grade(student_id=2, subject='高等数学', score=85.5, semester='第一学期', academic_year='2024-2025'),
+                Grade(student_id=2, subject='英语', score=78.0, semester='第一学期', academic_year='2024-2025'),
+                Grade(student_id=2, subject='计算机基础', score=92.0, semester='第一学期', academic_year='2024-2025'),
+                Grade(student_id=2, subject='程序设计', score=88.5, semester='第二学期', academic_year='2024-2025'),
 
                 # 卡皮巴拉的成绩
-                Grade(student_id=3, subject='电路分析', score=82.0, semester='第一学期', academic_year='2023-2024'),
-                Grade(student_id=3, subject='英语', score=75.5, semester='第一学期', academic_year='2023-2024'),
-                Grade(student_id=3, subject='电子技术', score=87.0, semester='第二学期', academic_year='2023-2024'),
+                Grade(student_id=3, subject='电路分析', score=82.0, semester='第一学期', academic_year='2024-2025'),
+                Grade(student_id=3, subject='英语', score=75.5, semester='第一学期', academic_year='2024-2025'),
+                Grade(student_id=3, subject='电子技术', score=87.0, semester='第二学期', academic_year='2024-2025'),
             ]
             for grade in grades:
                 db.session.add(grade)
